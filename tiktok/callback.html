@@ -1,3 +1,12 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Soos Clips – app callback</title><style>body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:48px auto;padding:0 20px;line-height:1.6;color:#111}h1{font-size:1.8rem}a{color:#0a58ca}footer{margin-top:48px;font-size:.9rem;color:#555}</style></head><body>
-<h1>Authorization received</h1><p>You can close this window and return to the application.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Soos Clips – app callback</title><style>body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:48px auto;padding:0 20px;line-height:1.6;color:#111}h1{font-size:1.8rem}a{color:#0a58ca}footer{margin-top:48px;font-size:.9rem;color:#555} .box{background:#f4f4f6;border:1px solid #ddd;border-radius:8px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:.95rem;word-break:break-all;margin:6px 0 16px}.err{color:#b00020}</style></head><body>
+<h1 id="h">Authorization received</h1>
+<div id="out"><p>You can close this window and return to the application.</p></div>
+<script>
+(function(){var p=new URLSearchParams(location.search),o=document.getElementById('out'),h=document.getElementById('h');
+function row(label,val){var l=document.createElement('p');l.textContent=label;var b=document.createElement('div');b.className='box';b.id=label.toLowerCase().replace(/[^a-z]/g,'');b.textContent=val;o.appendChild(l);o.appendChild(b);}
+if(p.get('error')){h.textContent='Authorization not completed';o.innerHTML='';var e=document.createElement('p');e.className='err';e.textContent='Error: '+p.get('error')+(p.get('error_description')?' – '+p.get('error_description'):'');o.appendChild(e);return;}
+if(p.get('code')){h.textContent='TikTok authorization received';o.innerHTML='<p>Copy the authorization code below into the Soos Clips tool to finish connecting the account. The code is single-use and expires in a few minutes.</p>';
+row('Authorization code',p.get('code'));row('State',p.get('state')||'(none)');if(p.get('scopes'))row('Granted scopes',p.get('scopes'));}
+})();
+</script>
 <footer>Soos Clips &middot; <a href="/">Home</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms of Service</a> &middot; Contact: soos.clip@gmail.com</footer></body></html>
